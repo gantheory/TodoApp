@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
+
+const style = {
+  margin: 12,
+};
 
 class TodoList extends Component {
   constructor() {
@@ -54,6 +61,7 @@ class TodoList extends Component {
     return (
       <div>
         <li className="todoList" >
+          {/*
           <input
             value={this.props.list.name}
             onChange={this.handleChangeListName}
@@ -63,22 +71,43 @@ class TodoList extends Component {
           >
             Delete List
           </button>
+          */}
+          <TextField
+            hintText="Todo List's Name"
+            value={this.props.list.name}
+            onChange={this.handleChangeListName}
+          />
+          <RaisedButton
+            icon={
+              <ContentRemoveCircle
+                color="#00BCD4"
+              />
+            }
+            style={style}
+            onClick={this.handleDeleteList}
+          />
         </li>
+        {/*
         <input
           value={this.state.newItemName}
           onChange={this.handleChange}
           onKeyDown={this.handleAddItem}
         />
-        <ul>
-          {this.props.list.items.map(item =>
-            <TodoItem
-              key={item.id}
-              item={item}
-              deleteItem={this.handleDeleteItem}
-              clickItem={this.handleClickItem}
-            />,
-          )}
-        </ul>
+        */}
+        <TextField
+          hintText="Your Todo Item's Name"
+          value={this.state.newItemName}
+          onChange={this.handleChange}
+          onKeyDown={this.handleAddItem}
+        />
+        {this.props.list.items.map(item =>
+          <TodoItem
+            key={item.id}
+            item={item}
+            deleteItem={this.handleDeleteItem}
+            clickItem={this.handleClickItem}
+          />,
+        )}
       </div>
     );
   }

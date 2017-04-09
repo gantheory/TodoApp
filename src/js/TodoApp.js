@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList';
 import '../css/TodoApp.css';
+import TextField from 'material-ui/TextField';
 
 class App extends Component {
   constructor() {
@@ -44,6 +45,16 @@ class App extends Component {
     this.setState({ targetList });
   }
   handleDeleteList(listID) {
+    const itemNum = this.state.completedItemNum;
+    for ( let i = 0 ; i < this.state.todoLists[listID].items.length ; i += 1 ) {
+      if (typeof this.state.todoLists[listID].items[i] === 'undefined') {
+        continue;
+      }
+      itemNum[
+        this.state.todoLists[listID].items[i].completed
+      ] -= 1;
+    }
+    this.setState({ itemNum });
     delete this.state.todoLists[listID];
     this.setState({ todoLists: this.state.todoLists });
   }
@@ -93,7 +104,8 @@ class App extends Component {
   render() {
     return (
       <div className="todoApp">
-        <h1 className="title">TODOs</h1>
+        <h1>TODOs</h1>
+        {/*
         <input
           className="todoListsInput"
           placeholder="Your Todo List's Name"
@@ -101,6 +113,15 @@ class App extends Component {
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
         />
+        */}
+        <TextField
+          className="todoListsInput"
+          hintText="Your Todo List's Name"
+          value={this.state.newListName}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+        />
+
         <div className="todoLists">
           <ul>
             {this.state.todoLists.map(list =>
@@ -116,12 +137,12 @@ class App extends Component {
             )}
           </ul>
         </div>
-        <div>
+        <p className="numItems">
           # of Active Items: {this.state.completedItemNum[0]}
-        </div>
-        <div>
+        </p>
+        <p className="numItems">
           # of Completed Items: {this.state.completedItemNum[1]}
-        </div>
+        </p>
       </div>
     );
   }

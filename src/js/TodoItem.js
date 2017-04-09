@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/TodoItem.css';
 
 class TodoItem extends Component {
   constructor() {
@@ -15,18 +16,36 @@ class TodoItem extends Component {
   render() {
     return (
       <div>
-        <li className="todoItem">
-          <input
-            type="checkbox"
-            onClick={this.handleClickItem}
-          />
-          {this.props.item.name}
-        </li>
+        {/*
+        <input
+          type="checkbox"
+          onClick={this.handleClickItem}
+        />
+        {this.props.item.name}
         <button
           onClick={this.handleDeleteItem}
         >
           Delete Item
         </button>
+        */}
+        {/*
+        <Checkbox
+          label={this.props.item.name}
+          style={styles.checkbox}
+          onClick={this.handleClickItem}
+        />
+        */}
+        <input
+          type="checkbox"
+          onClick={this.handleClickItem}
+        />
+        <span>{this.props.item.name}</span>
+        <i
+          className="material-icons"
+          onClick={this.handleDeleteItem}
+        >
+          delete
+        </i>
       </div>
     );
   }
