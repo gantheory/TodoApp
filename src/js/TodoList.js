@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {grey900} from 'material-ui/styles/colors';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 
 const style = {
@@ -59,55 +60,37 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <div>
-        <li className="todoList" >
-          {/*
-          <input
-            value={this.props.list.name}
-            onChange={this.handleChangeListName}
-          />
-          <button
-            onClick={this.handleDeleteList}
-          >
-            Delete List
-          </button>
-          */}
-          <TextField
-            hintText="Todo List's Name"
-            value={this.props.list.name}
-            onChange={this.handleChangeListName}
-          />
-          <RaisedButton
-            icon={
-              <ContentRemoveCircle
-                color="#00BCD4"
-              />
-            }
-            style={style}
-            onClick={this.handleDeleteList}
-          />
-        </li>
-        {/*
-        <input
-          value={this.state.newItemName}
-          onChange={this.handleChange}
-          onKeyDown={this.handleAddItem}
+      <div className="inList" >
+        <TextField
+          hintText="Todo List's Name"
+          value={this.props.list.name}
+          onChange={this.handleChangeListName}
         />
-        */}
+        <RaisedButton
+          icon={
+            <ContentRemoveCircle
+              color={grey900}
+            />
+          }
+          style={style}
+          onClick={this.handleDeleteList}
+        />
         <TextField
           hintText="Your Todo Item's Name"
           value={this.state.newItemName}
           onChange={this.handleChange}
           onKeyDown={this.handleAddItem}
         />
-        {this.props.list.items.map(item =>
-          <TodoItem
-            key={item.id}
-            item={item}
-            deleteItem={this.handleDeleteItem}
-            clickItem={this.handleClickItem}
-          />,
-        )}
+        <div className="itemsBlock">
+          {this.props.list.items.map(item =>
+            <TodoItem
+              key={item.id}
+              item={item}
+              deleteItem={this.handleDeleteItem}
+              clickItem={this.handleClickItem}
+            />,
+          )}
+        </div>
       </div>
     );
   }

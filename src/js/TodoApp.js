@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import TodoList from './TodoList';
 import '../css/TodoApp.css';
 import TextField from 'material-ui/TextField';
+import {grey50, grey600} from 'material-ui/styles/colors';
+
+const styles = {
+  textField: {
+    height: 100,
+    width: 500,
+    fontSize: 40,
+  }
+}
 
 class App extends Component {
   constructor() {
@@ -101,41 +110,19 @@ class App extends Component {
       itemNum,
     });
   }
+
   render() {
     return (
       <div className="todoApp">
-        <h1>TODOs</h1>
-        {/*
-        <input
-          className="todoListsInput"
-          placeholder="Your Todo List's Name"
-          value={this.state.newListName}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-        />
-        */}
-        <TextField
-          className="todoListsInput"
-          hintText="Your Todo List's Name"
-          value={this.state.newListName}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-        />
-
-        <div className="todoLists">
-          <ul>
-            {this.state.todoLists.map(list =>
-              <TodoList
-                key={list.id}
-                list={list}
-                changeListName={this.handleChangeListName}
-                deleteList={this.handleDeleteList}
-                addItem={this.handleAddItem}
-                deleteItem={this.handleDeleteItem}
-                clickItem={this.handleClickItem}
-              />,
-            )}
-          </ul>
+        <h1 className="appTitle">TODOs</h1>
+        <div className="todoListsInput">
+          <TextField
+            hintText="Your Todo List's Name"
+            value={this.state.newListName}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            style = {styles.textField}
+          />
         </div>
         <p className="numItems">
           # of Active Items: {this.state.completedItemNum[0]}
@@ -143,6 +130,23 @@ class App extends Component {
         <p className="numItems">
           # of Completed Items: {this.state.completedItemNum[1]}
         </p>
+        <div>
+          <ul className="todoLists">
+            {this.state.todoLists.map(list =>
+              <div className="todoList">
+                <TodoList
+                  key={list.id}
+                  list={list}
+                  changeListName={this.handleChangeListName}
+                  deleteList={this.handleDeleteList}
+                  addItem={this.handleAddItem}
+                  deleteItem={this.handleDeleteItem}
+                  clickItem={this.handleClickItem}
+                />
+              </div>,
+            )}
+          </ul>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import '../css/TodoItem.css';
+import Checkbox from 'material-ui/Checkbox';
+
+const styles = {
+  block: {
+    maxWidth: 100,
+  },
+}
 
 class TodoItem extends Component {
   constructor() {
@@ -16,32 +22,13 @@ class TodoItem extends Component {
   render() {
     return (
       <div>
-        {/*
-        <input
-          type="checkbox"
-          onClick={this.handleClickItem}
-        />
-        {this.props.item.name}
-        <button
-          onClick={this.handleDeleteItem}
-        >
-          Delete Item
-        </button>
-        */}
-        {/*
         <Checkbox
           label={this.props.item.name}
-          style={styles.checkbox}
+          style={styles.block}
           onClick={this.handleClickItem}
         />
-        */}
-        <input
-          type="checkbox"
-          onClick={this.handleClickItem}
-        />
-        <span>{this.props.item.name}</span>
         <i
-          className="material-icons"
+          className="material-icons trashCan"
           onClick={this.handleDeleteItem}
         >
           delete
