@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TodoList from './TodoList';
 import '../css/TodoApp.css';
 import TextField from 'material-ui/TextField';
-import {grey50, grey600} from 'material-ui/styles/colors';
 
 const styles = {
   textField: {
@@ -121,7 +120,7 @@ class App extends Component {
             value={this.state.newListName}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            style = {styles.textField}
+            style={styles.textField}
           />
         </div>
         <p className="numItems">
